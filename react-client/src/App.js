@@ -1,7 +1,6 @@
 import React , {useEffect, useState}from 'react';
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import socketIOClient from "socket.io-client";
 
 import './App.css';
 

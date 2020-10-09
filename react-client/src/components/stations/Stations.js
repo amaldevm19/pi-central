@@ -3,15 +3,6 @@ import StationsCard from "../cards/StationsCard";
 import socketIOClient from "socket.io-client";
 const socket = socketIOClient("http://127.0.0.1:4000");
 
-
-
-function CardCre({stations}){
-  return(
-  stations.map((station, key)=>{
-    return <StationsCard station={station} key={key}/>
-   })
-  )
-}
 function Stations() {
   let [stations, setStations] = useState([]);
   socket.on("PI_STATION_UPDATED", (data)=>{
@@ -24,7 +15,9 @@ function Stations() {
     return ()=>{setStations([])}
   },[])
   return (
-    <CardCre stations={stations}/>
+    stations.map((station, key)=>{
+      return <StationsCard station={station} key={key}/>
+     })
   );
 }
 

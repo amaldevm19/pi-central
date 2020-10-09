@@ -1,39 +1,144 @@
 [
     {   "pi_id":1,
-    "pi_type":"RaspberryPI",
-    "pi_name":"My-Pi@Fujeirah",
-    "pi_location":"ATM@Fujeirah",
-    "current_status":"normal",
-    "sensors":[{
-            "sensor_id":1,
-            "sensor_name":"UPS Temparature",
-            "sensor_status":"normal",
-            "sensor_icon":"thermometer-full"
-        },               
-        {
-            "sensor_id":2,
-            "sensor_name":"Room humidity",
-            "sensor_status":"normal",
-            "sensor_icon":"tint"
-        },
-        {
-            "sensor_id":1,
-            "sensor_name":"UPS Status", 
-            "sensor_status":"normal",
-            "sensor_icon":"plug"
-        },
-        {
-            "sensor_id":2,
-            "sensor_name":"UPS Battery",
-            "sensor_status":"normal",
-            "sensor_icon":"car-battery"
-        },
-        {
-            "sensor_id":3,
-            "sensor_name":"UPS Room Light",
-            "sensor_status":"on",
-            "sensor_icon":"lightbulb"  
-        }]
-    
-}
+        "pi_type":"RaspberryPI",
+        "pi_name":"My-Pi@Fujeirah",
+        "pi_location":"ATM@Fujeirah",
+        "current_status":"normal",
+        "sensors":[{
+                "sensor_id":1,
+                "sensor_name":"UPS Temparature",
+                "sensor_status":"normal",
+                "sensor_icon":"thermometer-full",
+                "sensor_value":20,
+                "sensor_uom":"\u2103"
+            },               
+            {
+                "sensor_id":2,
+                "sensor_name":"Room humidity",
+                "sensor_status":"normal",
+                "sensor_icon":"tint",
+                "sensor_value":80,
+                "sensor_uom":"%"
+            },
+            {
+                "sensor_id":1,
+                "sensor_name":"UPS Status", 
+                "sensor_status":"normal",
+                "sensor_icon":"plug",
+                "sensor_value":"low",
+                "sensor_uom":""
+            },
+            {
+                "sensor_id":2,
+                "sensor_name":"UPS Battery",
+                "sensor_status":"normal",
+                "sensor_icon":"car-battery",
+                "sensor_value":"low",
+                "sensor_uom":""
+            },
+            {
+                "sensor_id":3,
+                "sensor_name":"UPS Room Light",
+                "sensor_status":"normal",
+                "sensor_icon":"lightbulb",
+                "sensor_value":"high",
+                "sensor_uom":"" 
+            }]
+        
+    },
+    {   "pi_id":2,
+        "pi_type":"RaspberryPI",
+        "pi_name":"My-Pi@Dubai",
+        "pi_location":"ATM@Fujeirah",
+        "current_status":"normal",
+        "sensors":[{
+                "sensor_id":1,
+                "sensor_name":"UPS Temparature",
+                "sensor_status":"normal",
+                "sensor_icon":"thermometer-full",
+                "sensor_value":20,
+                "sensor_uom":"\u2103"
+            },               
+            {
+                "sensor_id":2,
+                "sensor_name":"Room humidity",
+                "sensor_status":"normal",
+                "sensor_icon":"tint",
+                "sensor_value":80,
+                "sensor_uom":"%"
+            },
+            {
+                "sensor_id":1,
+                "sensor_name":"UPS Status", 
+                "sensor_status":"normal",
+                "sensor_icon":"plug",
+                "sensor_value":"low",
+                "sensor_uom":""
+            },
+            {
+                "sensor_id":2,
+                "sensor_name":"UPS Battery",
+                "sensor_status":"normal",
+                "sensor_icon":"car-battery",
+                "sensor_value":"low",
+                "sensor_uom":""
+            },
+            {
+                "sensor_id":3,
+                "sensor_name":"UPS Room Light",
+                "sensor_status":"normal",
+                "sensor_icon":"lightbulb",
+                "sensor_value":"high",
+                "sensor_uom":"" 
+            }]
+        
+    },
+
+    {   "pi_id":3,
+        "pi_type":"RaspberryPI",
+        "pi_name":"My-Pi@Abudhabi",
+        "pi_location":"ATM@Fujeirah",
+        "current_status":"alarm",
+        "sensors":[{
+                "sensor_id":1,
+                "sensor_name":"UPS Temparature",
+                "sensor_status":"normal",
+                "sensor_icon":"thermometer-full",
+                "sensor_value":20,
+                "sensor_uom":"\u2103"
+            },               
+            {
+                "sensor_id":2,
+                "sensor_name":"Room humidity",
+                "sensor_status":"normal",
+                "sensor_icon":"tint",
+                "sensor_value":80,
+                "sensor_uom":"%"
+            },
+            {
+                "sensor_id":1,
+                "sensor_name":"UPS Status", 
+                "sensor_status":"alarm",
+                "sensor_icon":"plug",
+                "sensor_value":"low",
+                "sensor_uom":""
+            },
+            {
+                "sensor_id":2,
+                "sensor_name":"UPS Battery",
+                "sensor_status":"normal",
+                "sensor_icon":"car-battery",
+                "sensor_value":"low",
+                "sensor_uom":""
+            },
+            {
+                "sensor_id":3,
+                "sensor_name":"UPS Room Light",
+                "sensor_status":"normal",
+                "sensor_icon":"lightbulb",
+                "sensor_value":"high",
+                "sensor_uom":"" 
+            }]
+        
+    }
 ]

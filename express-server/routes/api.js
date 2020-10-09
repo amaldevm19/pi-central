@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {piStations} = require('../helpers/stations-socket')
+const {piStations} = require('../helpers/piDummyDataRequest')
 
 const analogueSensor = new Promise((resolve, reject)=>{
   let analogueSensors = require('../data/analog.sensor.json');
@@ -17,13 +17,11 @@ const digitalSensors = new Promise((resolve, reject)=>{
 /* GET home page. */
 router.get('/analog', async function(req, res, next) {
   analogueSensor.then((analogueSensors)=>{
-    console.log(analogueSensors)
     res.status(200).json(analogueSensors);
   })
 });
 router.get('/digital', async function(req, res, next) {
   digitalSensors.then((digitalSensors)=>{
-    console.log(digitalSensors)
     res.status(200).json(digitalSensors);
   })
 });

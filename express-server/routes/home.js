@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
+const {piStations} = require('../helpers/piDummyDataRequest')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  const data ={
-    pageTitle:'Home',
-    title: 'Overview',
-    piName:"PI-Logger @Fujeirah",
-    user:{
-      loggedIn:false
-    }
+  const pageInfo = {
+    appTitle:"My-PI",
+    pageTitle:"Home",
   }
-  res.render('home', { data });
+  piStations.then((piData)=>{
+    console.log(piData)
+    res.render('home', {piData, pageInfo});
+  })
 });
 
 

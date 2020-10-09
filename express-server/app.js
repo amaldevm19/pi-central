@@ -1,22 +1,22 @@
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var exphbs  = require('express-handlebars');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const exphbs  = require('express-handlebars');
 const Handlebars = require('handlebars');
 const hbshelpers = require('handlebars-helpers')();
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
-var cors = require('cors');
+const cors = require('cors');
 
 
+const homeRouter = require('./routes/home');
+const userRouter = require('./routes/users');
+const apiRouter = require('./routes/api');
+const testRouter = require('./routes/test');
 
-var homeRouter = require('./routes/home');
-var userRouter = require('./routes/users');
-var apiRouter = require('./routes/api');
-
-var app = express();
+const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs({
@@ -36,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homeRouter);
 app.use('/user', userRouter);
+app.use('/test', testRouter);
 app.use('/api/v1', apiRouter);
 
 

@@ -1,4 +1,5 @@
-[{
+[
+    {
     "sensor_id":1,
     "sensor_name":"UPS Temparature",
     "sensor_type":"temperature",
@@ -7,14 +8,15 @@
     "sensor_icon":"thermometer-full",
     "sensor_uom" : "\u2103",
     "pi_id":1
-},               
-{
-    "sensor_id":2,
-    "sensor_name":"Room humidity",
-    "sensor_type":"humidity",
-    "sensor_value":"80",
-    "sensor_status":"alarm",
-    "sensor_icon":"tint",
-    "sensor_uom" : "\u0025",
-    "pi_id":1
-}]
+    },               
+    {
+        "sensor_id":2,
+        "sensor_name":"Room humidity",
+        "sensor_type":"humidity",
+        "sensor_value":"80",
+        "sensor_status":"alarm",
+        "sensor_icon":"tint",
+        "sensor_uom" : "\u0025",
+        "pi_id":1
+    }
+]

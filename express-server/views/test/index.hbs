@@ -1,0 +1,25 @@
+{{!-- <button class="btn btn-success" onclick="triggerCOV();">Trigger PI_STATION_COV</button> --}}
+<button class="btn btn-success" id="pi_cov_button">Trigger PI_COV</button>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $(function () {
+        const piEvents = {
+            PI_COV_FROM_SERVER:"pi_cov_from_server",
+            USER_COV_FROM_SERVER:"user_cov_from_server",
+            PI_COV_FROM_PI:"pi_cov_from_pi",
+            USER_COV_FROM_USER:"user_cov_from_user",
+        }
+        var socket = io('/?group=pi_station');
+        const data = {key:"test-key", value:"test-value"}
+        $("#pi_cov_button").click(()=>{
+            console.log("Pi_COV Triggered")
+            socket.emit(piEvents.PI_COV_FROM_PI,data )
+        });
+        socket.on(piEvents.USER_COV_FROM_SERVER,(msg)=>{
+            console.log(msg)
+        }) 
+    })
+</script>

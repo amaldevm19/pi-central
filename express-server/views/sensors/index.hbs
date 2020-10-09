@@ -1,0 +1,11 @@
+<script>
+  $(function () {
+    var socket = io();
+    socket.on("UPS ALARM",(msg)=>{
+        $('#ups_status_icon').removeClass("btn-outline-success").addClass('btn-outline-danger');
+        $('#ups_status_text').removeClass("text-success").addClass("text-danger").text("UPS in Alarm")
+        $('#ups_status_ack_btn').removeClass("btn-success").removeClass("disabled").addClass("btn-danger").text("Acknowledge Alarm");
+    })
+    
+  });
+</script>

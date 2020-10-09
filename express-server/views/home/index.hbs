@@ -1,13 +1,16 @@
+
 {{#each piData}}
-<div class=" col-lg-4 col-md-6 col-sm-12 mt-3 pt-5">
+<div class=" col-lg-4 col-md-6 col-sm-12 mt-3 pt-5" id={{this.pi_id}}>
   <div class="card text-white {{#eq this.current_status "normal"}} bg-success {{/eq}} {{#eq this.current_status "alarm"}} bg-danger {{/eq}} mb-3" >
     <div class="card-header text-center">PI Station ID : {{this.pi_id}}</div>
     <div class="card-body">
       <h6 class="card-title text-center">{{this.pi_name}}</h6>
       <ul class="list-group">
         {{#each this.sensors}}
-        <li class="list-group-item {{#eq this.sensor_status "normal"}} list-group-item-success{{/eq}} {{#eq this.sensor_status "alarm"}} list-group-item-danger{{/eq}} pt-1 pb-1" >
-          <i class="fas fa-{{this.sensor_icon}} pr-3" style="font-size: 30px;"></i>  {{this.sensor_name}} : <span class="badge {{#eq this.sensor_status "normal"}} badge-success{{/eq}} mt-2 {{#eq this.sensor_status "alarm"}} badge-danger{{/eq}} float-right">{{this.sensor_value}}{{this.sensor_uom}}</span>
+        <li class="list-group-item {{#eq this.sensor_status "normal"}} list-group-item-success{{/eq}} {{#eq this.sensor_status "alarm"}} list-group-item-danger{{/eq}} pt-1 pb-1" id="sensor_{{this.sensor_id}}" >
+          <i class="fas fa-{{this.sensor_icon}} pr-3" style="font-size: 30px;"></i>  
+          {{this.sensor_name}} :{{#eq this.sensor_mode "monitor"}} <span class="badge {{#eq this.sensor_status "normal"}} badge-success{{/eq}} mt-2 {{#eq this.sensor_status "alarm"}} badge-danger{{/eq}} float-right">{{this.sensor_value}}{{this.sensor_uom}}</span>{{/eq}}
+          {{#eq this.sensor_mode "control"}} <button class="btn  {{#eq this.sensor_value "on"}} btn-success {{/eq}} {{#eq this.sensor_value "off"}} btn-danger {{/eq}} btn-sm float-right">{{this.sensor_value}}</button>{{/eq}}
         </li>
         {{/each}}
       </ul>
@@ -22,19 +25,48 @@
 <script>
   $(function () {
     const piEvents = {
-      PI_COV_FROM_SERVER:"pi_cov_from_server",
-      USER_COV_FROM_SERVER:"user_cov_from_server",
-      PI_COV_FROM_PI:"pi_cov_from_pi",
-      USER_COV_FROM_USER:"user_cov_from_user",
+            PI_COV_FROM_PI:"pi_cov_from_pi",
+            PI_COV_FROM_SERVER:"pi_cov_from_server",
+            USER_COV_FROM_USER:"user_cov_from_user",
+            USER_COV_FROM_SERVER:"user_cov_from_server",
+            SENSOR_COV_FROM_PI:"sensor_cov_from_pi",
+            SENSOR_COV_FROM_SERVER:"sensor_cov_from_server",
     }
     var socket = io('/?group=user_station');
-    socket.on(piEvents.PI_COV_FROM_SERVER,(msg)=>{
-      console.log("PI Station has triggered a COV", msg)
+    socket.on(piEvents.PI_COV_FROM_SERVER,(piData)=>{
+      console.log("PI Station has triggered a COV", piData)
+      let newHTML = `
+        <div class="card text-white ${piData.current_status === "normal"?"bg-success":"bg-danger"} mb-3" >
+          <div class="card-header text-center">PI Station ID : ${piData.pi_id}</div>
+          <div class="card-body">
+            <h6 class="card-title text-center">${piData.pi_name}</h6>
+            <ul class="list-group">
+              ${
+                piData.sensors.map((item)=>{
+                   return (`<li class="list-group-item ${item.sensor_status === "normal" ? 'list-group-item-success': 'list-group-item-danger'} pt-1 pb-1" id="sensor_${item.sensor_id}" >
+                      <i class="fas fa-${item.sensor_icon} pr-3" style="font-size: 30px;"></i>  
+                      ${item.sensor_name}:${item.sensor_mode === "monitor"? `<span class="badge ${item.sensor_status === "normal"? 'badge-success' :'badge-danger'} mt-2 float-right">${item.sensor_value}${item.sensor_uom}</span>`:
+                          `<button class="btn  ${item.sensor_value ===  "on"? 'btn-success' :'btn-danger'} btn-sm float-right">${item.sensor_value}</button>`}</li>`)
+                          }).reduce((acc, cv)=>{
+                            return acc+cv
+                          })
+               
+              }
+            </ul>
+          </div>
+          <button class="btn ${piData.current_status === "normal"? 'btn-danger' :'btn-success'}">More Info</button>
+        </div>
+      `
+      $(`#${piData.pi_id}`).empty().html(newHTML);
+
     })
     $("#test_cov_button").click(()=>{
       console.log("TEST_COV Triggered")
       const data = "Data from User"
       socket.emit(piEvents.USER_COV_FROM_USER, data)
     }) 
+    socket.on(piEvents.SENSOR_COV_FROM_SERVER,(sensorData)=>{
+      console.log($(`#${sensorData.pi_id}`))
+    })
   })
 </script>

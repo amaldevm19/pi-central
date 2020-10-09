@@ -1,22 +1,88 @@
 {{!-- <button class="btn btn-success" onclick="triggerCOV();">Trigger PI_STATION_COV</button> --}}
-<button class="btn btn-success" id="pi_cov_button">Trigger PI_COV</button>
-
+<div class="col mt-5">
+<button class="btn btn-success btn-sm" id="pi_cov_button">Trigger PI_COV</button>
+<button class="btn btn-success btn-sm" id="sensor_cov_button">Trigger SENSOR_COV</button>
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
     $(function () {
         const piEvents = {
-            PI_COV_FROM_SERVER:"pi_cov_from_server",
-            USER_COV_FROM_SERVER:"user_cov_from_server",
             PI_COV_FROM_PI:"pi_cov_from_pi",
+            PI_COV_FROM_SERVER:"pi_cov_from_server",
             USER_COV_FROM_USER:"user_cov_from_user",
+            USER_COV_FROM_SERVER:"user_cov_from_server",
+            SENSOR_COV_FROM_PI:"sensor_cov_from_pi",
+            SENSOR_COV_FROM_SERVER:"sensor_cov_from_server",
         }
         var socket = io('/?group=pi_station');
-        const data = {key:"test-key", value:"test-value"}
+        const piData = {"pi_id":1,
+                        "pi_type":"RaspberryPI",
+                        "pi_name":"My-Pi@Fujeirah",
+                        "pi_location":"ATM@Fujeirah",
+                        "current_status":"alarm",
+                        "sensors":[{
+                                "sensor_id":1,
+                                "sensor_name":"UPS Temparature",
+                                "sensor_status":"alarm",
+                                "sensor_icon":"thermometer-full",
+                                "sensor_value":30,
+                                "sensor_mode":"monitor",
+                                "sensor_uom":"\u2103"
+                            },               
+                            {
+                                "sensor_id":2,
+                                "sensor_name":"Room humidity",
+                                "sensor_status":"normal",
+                                "sensor_icon":"tint",
+                                "sensor_value":80,
+                                "sensor_mode":"monitor",
+                                "sensor_uom":"%"
+                            },
+                            {
+                                "sensor_id":3,
+                                "sensor_name":"UPS Status", 
+                                "sensor_status":"alarm",
+                                "sensor_icon":"plug",
+                                "sensor_value":"low",
+                                "sensor_mode":"monitor",
+                                "sensor_uom":""
+                            },
+                            {
+                                "sensor_id":4,
+                                "sensor_name":"UPS Battery",
+                                "sensor_status":"normal",
+                                "sensor_icon":"car-battery",
+                                "sensor_value":"low",
+                                "sensor_mode":"monitor",
+                                "sensor_uom":""
+                            },
+                            {
+                                "sensor_id":5,
+                                "sensor_name":"UPS Room Light",
+                                "sensor_status":"normal",
+                                "sensor_icon":"lightbulb",
+                                "sensor_value":"on",
+                                "sensor_mode":"control",
+                                "sensor_uom":"" 
+                            }]
+                        
+                    }
+
+
+         const sensorData = {   "pi_id":1,
+                                "sensor_id":1,
+                                "sensor_status":"alarm",
+                                "sensor_value":31,
+                            }
         $("#pi_cov_button").click(()=>{
             console.log("Pi_COV Triggered")
-            socket.emit(piEvents.PI_COV_FROM_PI,data )
+            socket.emit(piEvents.PI_COV_FROM_PI,piData )
+        });
+        $("#sensor_cov_button").click(()=>{
+            console.log("sensor_COV Triggered")
+            socket.emit(piEvents.SENSOR_COV_FROM_PI,sensorData )
         });
         socket.on(piEvents.USER_COV_FROM_SERVER,(msg)=>{
             console.log(msg)

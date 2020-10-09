@@ -10,6 +10,7 @@
                 "sensor_status":"normal",
                 "sensor_icon":"thermometer-full",
                 "sensor_value":20,
+                "sensor_mode":"monitor",
                 "sensor_uom":"\u2103"
             },               
             {
@@ -18,30 +19,34 @@
                 "sensor_status":"normal",
                 "sensor_icon":"tint",
                 "sensor_value":80,
+                "sensor_mode":"monitor",
                 "sensor_uom":"%"
             },
             {
-                "sensor_id":1,
+                "sensor_id":3,
                 "sensor_name":"UPS Status", 
                 "sensor_status":"normal",
                 "sensor_icon":"plug",
                 "sensor_value":"low",
+                "sensor_mode":"monitor",
                 "sensor_uom":""
             },
             {
-                "sensor_id":2,
+                "sensor_id":4,
                 "sensor_name":"UPS Battery",
                 "sensor_status":"normal",
                 "sensor_icon":"car-battery",
                 "sensor_value":"low",
+                "sensor_mode":"monitor",
                 "sensor_uom":""
             },
             {
-                "sensor_id":3,
+                "sensor_id":5,
                 "sensor_name":"UPS Room Light",
                 "sensor_status":"normal",
                 "sensor_icon":"lightbulb",
-                "sensor_value":"high",
+                "sensor_value":"off",
+                "sensor_mode":"control",
                 "sensor_uom":"" 
             }]
         
@@ -57,6 +62,7 @@
                 "sensor_status":"normal",
                 "sensor_icon":"thermometer-full",
                 "sensor_value":20,
+                "sensor_mode":"monitor",
                 "sensor_uom":"\u2103"
             },               
             {
@@ -65,30 +71,34 @@
                 "sensor_status":"normal",
                 "sensor_icon":"tint",
                 "sensor_value":80,
+                "sensor_mode":"monitor",
                 "sensor_uom":"%"
             },
             {
-                "sensor_id":1,
+                "sensor_id":3,
                 "sensor_name":"UPS Status", 
                 "sensor_status":"normal",
                 "sensor_icon":"plug",
                 "sensor_value":"low",
+                "sensor_mode":"monitor",
                 "sensor_uom":""
             },
             {
-                "sensor_id":2,
+                "sensor_id":4,
                 "sensor_name":"UPS Battery",
                 "sensor_status":"normal",
                 "sensor_icon":"car-battery",
                 "sensor_value":"low",
+                "sensor_mode":"monitor",
                 "sensor_uom":""
             },
             {
-                "sensor_id":3,
+                "sensor_id":5,
                 "sensor_name":"UPS Room Light",
                 "sensor_status":"normal",
                 "sensor_icon":"lightbulb",
-                "sensor_value":"high",
+                "sensor_value":"on",
+                "sensor_mode":"control",
                 "sensor_uom":"" 
             }]
         
@@ -105,6 +115,7 @@
                 "sensor_status":"normal",
                 "sensor_icon":"thermometer-full",
                 "sensor_value":20,
+                "sensor_mode":"monitor",
                 "sensor_uom":"\u2103"
             },               
             {
@@ -113,30 +124,34 @@
                 "sensor_status":"normal",
                 "sensor_icon":"tint",
                 "sensor_value":80,
+                "sensor_mode":"monitor",
                 "sensor_uom":"%"
             },
             {
-                "sensor_id":1,
+                "sensor_id":3,
                 "sensor_name":"UPS Status", 
                 "sensor_status":"alarm",
                 "sensor_icon":"plug",
                 "sensor_value":"low",
+                "sensor_mode":"monitor",
                 "sensor_uom":""
             },
             {
-                "sensor_id":2,
+                "sensor_id":4,
                 "sensor_name":"UPS Battery",
                 "sensor_status":"normal",
                 "sensor_icon":"car-battery",
                 "sensor_value":"low",
+                "sensor_mode":"monitor",
                 "sensor_uom":""
             },
             {
-                "sensor_id":3,
+                "sensor_id":5,
                 "sensor_name":"UPS Room Light",
                 "sensor_status":"normal",
                 "sensor_icon":"lightbulb",
-                "sensor_value":"high",
+                "sensor_value":"on",
+                "sensor_mode":"control",
                 "sensor_uom":"" 
             }]
         

@@ -20,6 +20,10 @@ io.on('connection', (socket) => {
         console.log("message from PI to Users")
         io.to("user-station").emit(piEvents.PI_COV_FROM_SERVER, msg)
     })
+    socket.on(piEvents.SENSOR_COV_FROM_PI, (msg)=>{
+        console.log("message from PI to Users")
+        io.to("user-station").emit(piEvents.SENSOR_COV_FROM_SERVER, msg)
+    })
     socket.on(piEvents.USER_COV_FROM_USER, (data)=>{
         console.log("message from User to PI")
         io.to("pi-station").emit(piEvents.USER_COV_FROM_SERVER, data)

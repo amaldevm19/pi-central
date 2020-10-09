@@ -1,0 +1,10 @@
+{
+    "GPIO":[
+        {
+            "gpio_number":"4",
+            "gpio_name":"UPS_STATUS",
+            "gpio_as":"INPUT",
+            "gpio_message":"UPS failure"
+        }
+    ]
+}

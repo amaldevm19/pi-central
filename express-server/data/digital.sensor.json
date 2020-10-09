@@ -1,0 +1,30 @@
+[{
+    "sensor_id":1,
+    "sensor_name":"UPS Status", 
+    "sensor_type":"input",
+    "sensor_mode":{"current_mode":"monitor","sensor_id":"none"},
+    "sensor_value":"low",
+    "sensor_status":"normal",
+    "sensor_icon":"plug",
+    "pi_id":1
+},
+{
+    "sensor_id":2,
+    "sensor_name":"UPS Battery",
+    "sensor_type":"input",
+    "sensor_mode":{"current_mode":"monitor","sensor_id":"none"},
+    "sensor_value":"low",
+    "sensor_status":"alarm",
+    "sensor_icon":"car-battery",
+    "pi_id":1
+},
+{
+    "sensor_id":3,
+    "sensor_name":"UPS Room Light",
+    "sensor_type":"output",
+    "sensor_mode":{"current_mode":"relay","sensor_id":4},
+    "sensor_value":"high",
+    "sensor_status":"on",
+    "sensor_icon":"lightbulb",
+    "pi_id":1 
+}]

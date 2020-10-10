@@ -71,10 +71,15 @@
                     }
 
 
-         const sensorData = {   "pi_id":1,
+         const sensorData = {   "pi_id":2,
+                                "current_status":"alarm",
                                 "sensor_id":1,
+                                "sensor_name":"UPS Temparature",
                                 "sensor_status":"alarm",
-                                "sensor_value":31,
+                                "sensor_icon":"thermometer-full",
+                                "sensor_value":40,
+                                "sensor_mode":"monitor",
+                                "sensor_uom":"\u2103"
                             }
         $("#pi_cov_button").click(()=>{
             console.log("Pi_COV Triggered")

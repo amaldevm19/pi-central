@@ -15,7 +15,7 @@
         {{/each}}
       </ul>
     </div>
-    <button class="btn {{#eq this.current_status "normal"}} btn-danger {{/eq}} {{#eq this.current_status "alarm"}} btn-success {{/eq}}">More Info</button>
+    <button class="btn btn-info">More Info</button>
   </div>
 </div>
 {{/each}}
@@ -45,7 +45,7 @@
                 piData.sensors.map((item)=>{
                    return (`<li class="list-group-item ${item.sensor_status === "normal" ? 'list-group-item-success': 'list-group-item-danger'} pt-1 pb-1" id="sensor_${item.sensor_id}" >
                       <i class="fas fa-${item.sensor_icon} pr-3" style="font-size: 30px;"></i>  
-                      ${item.sensor_name}:${item.sensor_mode === "monitor"? `<span class="badge ${item.sensor_status === "normal"? 'badge-success' :'badge-danger'} mt-2 float-right">${item.sensor_value}${item.sensor_uom}</span>`:
+                      ${item.sensor_name} :${item.sensor_mode === "monitor"? `<span class="badge ${item.sensor_status === "normal"? 'badge-success' :'badge-danger'} mt-2 float-right">${item.sensor_value}${item.sensor_uom}</span>`:
                           `<button class="btn  ${item.sensor_value ===  "on"? 'btn-success' :'btn-danger'} btn-sm float-right">${item.sensor_value}</button>`}</li>`)
                           }).reduce((acc, cv)=>{
                             return acc+cv
@@ -66,7 +66,18 @@
       socket.emit(piEvents.USER_COV_FROM_USER, data)
     }) 
     socket.on(piEvents.SENSOR_COV_FROM_SERVER,(sensorData)=>{
-      console.log($(`#${sensorData.pi_id}`))
+      const sensorLi = `
+      <li class="list-group-item ${sensorData.sensor_status === "normal" ? 'list-group-item-success': 'list-group-item-danger'} pt-1 pb-1" id="sensor_${sensorData.sensor_id}" >
+                      <i class="fas fa-${sensorData.sensor_icon} pr-3" style="font-size: 30px;"></i>  
+                      ${sensorData.sensor_name} :${sensorData.sensor_mode === "monitor"? `<span class="badge ${sensorData.sensor_status === "normal"? 'badge-success' :'badge-danger'} mt-2 float-right">${sensorData.sensor_value}${sensorData.sensor_uom}</span>`:
+                          `<button class="btn  ${sensorData.sensor_value ===  "on"? 'btn-success' :'btn-danger'} btn-sm float-right">${sensorData.sensor_value}</button>`}</li>
+      
+      `
+      $(`#${sensorData.pi_id}`).find(`#sensor_${sensorData.sensor_id}`).replaceWith(sensorLi);
+      if(sensorData.current_status === 'alarm'){
+        $(`#${sensorData.pi_id} > div`).removeClass("bg-success").addClass("bg-danger")
+      }
     })
+
   })
 </script>

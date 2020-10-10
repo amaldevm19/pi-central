@@ -9,9 +9,23 @@ import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import Stations from './components/stations/Stations';
 import AboutPI from './components/about/AboutPI';
+import socketIOClient from "socket.io-client";
+const socket = socketIOClient("http://127.0.0.1:4000/?group=user_station");
+
+socket.on("pi_cov_from_server", (data)=>{
+  console.log(data)
+})
 
 
 function App() {
+  let [piData, setStations] = useState([]);
+  useEffect(()=>{
+    fetch('http://localhost:4000/api/v1/pi-stations').then(response => response.json()).then(data => {
+    setStations([...data]);
+    });
+    return ()=>{setStations([])}
+  },[])
+
   return (
     <Router>
       <Header/>
@@ -21,7 +35,7 @@ function App() {
             <Sensor/>
           </Route>
           <Route path="/stations">
-            <Stations/>
+            <Stations piData={piData} />
           </Route>
           <Route path="/aboutpi">
             <AboutPI/>
